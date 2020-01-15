@@ -47,12 +47,22 @@ public class Runner {
             System.out.println("Player 1 goes first!");
             int curPlayer = 0;
             String input = "";
+            String[] lastMove = {"",""};
             while(!gameOver) {
                 board.display();
                 System.out.println("Player " + (curPlayer +1) + " enter your move");
                 input = scanner.nextLine();
-                players[curPlayer].makeMove(board,input);
-                curPlayer = (curPlayer + 1) % 2;
+                if(input.equals("u") && !lastMove[curPlayer].equals("")) {
+                    //System.out.println("undo");
+                    //System.out.println("lastMove: "+lastMove[curPlayer]);
+                    players[curPlayer].undoMove(board,lastMove[curPlayer]);
+                    //System.out.println("undid");
+                }
+                else {
+                    players[curPlayer].makeMove(board,input);
+                }
+                lastMove[curPlayer] = input;
+                curPlayer = (curPlayer + 1) % players.length;
                 if(!players[curPlayer].hasMove(board)) {
                     gameOver = true;
                 }
@@ -80,7 +90,9 @@ public class Runner {
                     System.out.println("Congratulations, you beat the computer!");
                     break;
                 }
-                String aiMove = ai.randomMove(board);
+                System.out.println("before");
+                String aiMove = ai.decNextMove(board,player);
+                System.out.println("aiMove: "+aiMove);
                 System.out.println("The computer does: " + aiMove);
                 ai.makeMove(board,aiMove);
                 if(!player.hasMove(board)) {

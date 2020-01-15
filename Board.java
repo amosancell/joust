@@ -33,6 +33,25 @@ public class Board {
         }
     }
 
+    public Board(int nRows, int nCols, String[][] board, Boolean[][] used) {
+        this.nRows = nRows;
+        this.nCols = nCols;
+        this.board = board;
+        this.used = used;
+    }
+
+    public Board copy() {
+        String[][] bCopy = new String[board.length][board[0].length];
+        for(int i=0; i < bCopy.length; i++) {
+            bCopy[i] = board[i].clone();
+        }
+        Boolean[][] uCopy = new Boolean[used.length][used[0].length];
+        for(int i=0; i < uCopy.length; i++) {
+            uCopy[i] = used[i].clone();
+        }
+        return new Board(nRows,nCols,bCopy,uCopy);
+    }
+
     // getters and setters of private instance variables
     public int getnRows() {
         return nRows;
