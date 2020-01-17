@@ -10,6 +10,10 @@ public class Player {
     private int[] position; // never used
     private String symbol;
 
+    public Player() {
+
+    }
+
     public Player(int row, int col, String symbol) {
         this.row = row;
         this.col = col;
@@ -43,8 +47,6 @@ public class Player {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
-
-
 
     /* a valid direction is:
         only 2 values, only made of r,l,u,d
