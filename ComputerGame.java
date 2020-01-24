@@ -1,16 +1,16 @@
-import java.util.function.*;
-
 public class ComputerGame extends Game {
     private Player player;
     private AI ai;
 
-    public ComputerGame(Function<Board,String> alg) {
+    public ComputerGame(Board b, AIalg<Board,Player,String> alg) {
         //this.player = board.initPlayers(1)[0];
         //this.ai = ai;
+        this.board = b;
         Player[] init = board.initPlayers(2);
         this.player = init[0];
         this.ai = new AI(init[1].getRow(),init[1].getCol());
         this.ai.setAlg(alg);
+        this.ai.setSymbol("c");
     }
 
     public Player play() {

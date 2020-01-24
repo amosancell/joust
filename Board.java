@@ -88,6 +88,15 @@ public class Board {
     }
 
 
+    public void clear() {
+        for(int i=0; i < nRows; i++) {
+            for(int j=0; j < nCols; j++) {
+                board[i][j] = " ";
+                used[i][j] = false;
+            }
+        }
+    }
+
     // draws a line in console  roughly as long as the board should be
     public void drawLine() {
         for(int i=0; i < nCols; i++) {
